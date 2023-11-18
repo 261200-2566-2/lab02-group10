@@ -1,6 +1,19 @@
 // Press Shift twice to open the Search Everywhere dialog and type `show whitespaces`,
 // then press Enter. You can now see whitespace characters in your code.
-public class Main {
+//ทำ sensor แสง, หน้าจอแสดงผล ,check ฝุ่น ,Temp(like แอร์),clk
+    public class AirPurifier {
+        String name;
+        String SerialNumber;
+        boolean Power = false;
+        AirPurifier(String Name1,String serialNumber1){//Name the Air purifier
+            name = Name1;SerialNumber = serialNumber1;
+        }
+        void TurnOn(){Power = true;}//turn on Air purifier
+        void  TurnOff(){Power = false;}//turn off Air purifier
+
+
+
+
     public static void main(String[] args) {
         // Press Alt+Enter with your caret at the highlighted text to see how
         // IntelliJ IDEA suggests fixing it.
