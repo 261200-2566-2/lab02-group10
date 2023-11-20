@@ -1,24 +1,73 @@
 // Press Shift twice to open the Search Everywhere dialog and type `show whitespaces`,
 // then press Enter. You can now see whitespace characters in your code.
 
+import java.util.Scanner;
+
 //--------------------------------------------------
 //description of AirPurifier class
+
 //    what should be instance variables?
-    //Ans: Xiaomi Smart Air Purifier 4 Pro
+//      Ans: model , serialNo , fanSpeed , lightOn , temperature , dustLevel , power.
+
 //    what should be instance methods?
-    //Ans:
+//      Ans: turnOn() , turnOff() , setFanSpeed() , setTemperature() , howDustLevel() ,
+//           sensorLight() , display() , set() , operator().
+
 //    what should be class variables?
-    //Ans: Xiaomi
+//      Ans: modelCount.
+
 //    what should be class methods?
-    //Ans:
+//      Ans: getModelCount().
+
 //--------------------------------------------------
 //overview of the computation
-//    what's needed as inputs?
-    //Ans:
-//    what's to be returned?
-    //Ans:
+//    อย่างแรกเลยการทำงานของเจ้าตัวเครื่องพวกนี้คือจะมีการตรวจับความสว่างของห้อง
+//    เมื่อไหร่ก็ตามที่ห้องถูกไฟเปิดเครื่องจะทำงานโดยอัตโนมัติ และเรายังสามารถที่จะตั้งค่าอุณหภูมิและความเร็วภายหลังได้อีก
+//    และจะหยุดทำงานไปเองเมื่อห้องไม่มีแสงไฟ
+
+//    what's needed as inputs? && what's to be returned?
+//      Ans:
+//           Constructor : AirPurifier
+//               จะมีการรับค่า(inputs)ตัวแปร : Model , serialNo เพื่อกำหนดค่าให้กับตัวแปร Object(instance variables)
+//               จะไม่มีการคืนค่าใดๆจาก Constructor
+
+//            setFanSpeed
+//                จะมีการรับค่า(input)ตัวแปร : speed เพื่อแสดงความเร็วที่ต้องการ
+//                จะไม่มีการคืนค่าใดๆจาก setFanSpeed
+
+//            setTemperature
+//                จะมีการรับค่า(input)ตัวแปร : Tem เพื่อแสดงอุณหภูมิที่ต้องการ
+//                จะไม่มีการคืนค่าใดๆจาก setTemperature
+
+//            HowDustLevel
+//                จะไม่มีการรับค่า(input)ใดๆจาก HowDustLevel
+//                จะไม่มีการคืนค่าใดๆจาก HowDustLevel (แต่พิมพ์ข้อมูลเกี่ยวกับคุณภาพอากาศขึ้นมาตามค่า dustLevel)
+
+//            sensorLight
+//                จะไม่มีการรับค่า(input)ใดๆจาก sensorLight
+//                จะไม่มีการคืนค่า boolean (true ถ้าไฟสว่าง , false ถ้าไฟดับ)
+
+//            display
+//                จะไม่มีการรับค่า(input)ใดๆจาก HowDustLevel
+//                จะไม่มีการคืนค่าใดๆจาก display (แต่พิมพ์ข้อมูลเกี่ยวกับเครื่องฟอกอากาศ : model, serialNo , power, ความเร็วพัดลม, อุณหภูมิ, dustLevel, และคุณภาพอากาศ)
+
+//            set
+//                จะมีการรับค่า(inputs)ตัวแปร : speed , Tem เพื่อเพื่อแสดงความเร็วและอุณหภูมิที่ต้องการ
+//                จะไม่มีการคืนค่าใดๆจาก set
+
+//            getModelCount
+//                จะไม่มีการรับค่า(input) เนื่องจากไม่ต้องการข้อมูลเฉพาะตัว (instance-specific) เป็น class method
+//                จะมีการคืนค่าเป็นจำนวนเต็มแทนจำนวนของ object ของคลาส AirPurifier
+
+//            operator
+//                จะไม่มีการรับค่า(input) (แต่มีการสร้างอ็อบเจกต์ใหม่ของ AirPurifier ภายในเมทอด)
+//                จะไม่มีการคืนค่าใดๆ (แต่มีการกระทำกับผู้ใช้ผ่านทางคอนโซล , เปิดหรือปิดเครื่องฟอกอากาศ , display , และบางครั้งอาจกำหนดความเร็วพัดลมและอุณหภูมิ)
+
+//            main
+//                จะมีการรับค่า(input) รับArrayของString (args) เป็นพารามิเตอร์เข้า
+//                จะไม่มีการคืนค่าใดๆจาก main
+
 //--------------------------------------------------
-import java.util.Scanner;
 public class AirPurifier {
     static String model;
     static String serialNo;
@@ -29,6 +78,10 @@ public class AirPurifier {
     boolean power;
     void turnOn() { power = true; }
     void turnOff() { power = false; }
+    static int modelCount = 0;
+    public static int getModelCount(){
+        return modelCount/2;
+    }
     public AirPurifier(String _model,String _serialNo){
         model = _model;
         serialNo = _serialNo;
@@ -36,6 +89,7 @@ public class AirPurifier {
         temperature = 25;
         dustLevel = 12.0;
         power = false;
+        modelCount++;
     }
     public void setFanSpeed(int speed){
         if(speed < 0){
@@ -87,8 +141,29 @@ public class AirPurifier {
         setFanSpeed(speed);
         setTemperature(Tem);
     }
-    static int modelCount = 0;
-    public static int getModelCount(){
-        return modelCount;
+    public void operator(){
+        AirPurifier A = new AirPurifier(model,serialNo);
+        Scanner s = new Scanner(System.in);
+        if (!A.sensorLight()) {
+            A.turnOff();
+        } else {
+            System.out.println("Hello and welcome to class!");
+            A.turnOn();
+            A.display();
+            System.out.println("Do you want to set? [ Y : N ]");
+            String Ans = s.next();
+            if (Ans.equals("Y")) {
+                System.out.println("What temperature do you need?");
+                int Tem = s.nextInt();
+                System.out.println("How much speed do you want?");
+                int speed = s.nextInt();
+                A.set(speed, Tem);
+                A.display();
+            } else if (Ans.equals("N")) {
+                System.out.println("Hope you enjoy with your class!!");
+            } else {
+                System.out.println("ERROR");
+            }
+        }
     }
 }
