@@ -1,0 +1,65 @@
+//--------------------------------------------------
+description of AirPurifier class
+
+    what should be instance variables?
+      Ans: model , serialNo , fanSpeed , lightOn , temperature , dustLevel , power.
+
+    what should be instance methods?
+      Ans: turnOn() , turnOff() , setFanSpeed() , setTemperature() , howDustLevel() ,
+           sensorLight() , display() , set() , operator().
+
+    what should be class variables?
+      Ans: modelCount.
+
+    what should be class methods?
+      Ans: getModelCount().
+
+//--------------------------------------------------
+overview of the computation
+    อย่างแรกเลยการทำงานของเจ้าตัวเครื่องพวกนี้คือจะมีการตรวจับความสว่างของห้อง
+    เมื่อไหร่ก็ตามที่ห้องถูกไฟเปิดเครื่องจะทำงานโดยอัตโนมัติ และเรายังสามารถที่จะตั้งค่าอุณหภูมิและความเร็วภายหลังได้อีก
+    และจะหยุดทำงานไปเองเมื่อห้องไม่มีแสงไฟ
+
+    what's needed as inputs? && what's to be returned?
+      Ans:
+           Constructor : AirPurifier
+               จะมีการรับค่า(inputs)ตัวแปร : Model , serialNo เพื่อกำหนดค่าให้กับตัวแปร Object(instance variables)
+               จะไม่มีการคืนค่าใดๆจาก Constructor
+
+            setFanSpeed
+                จะมีการรับค่า(input)ตัวแปร : speed เพื่อแสดงความเร็วที่ต้องการ
+                จะไม่มีการคืนค่าใดๆจาก setFanSpeed
+
+            setTemperature
+                จะมีการรับค่า(input)ตัวแปร : Tem เพื่อแสดงอุณหภูมิที่ต้องการ
+                จะไม่มีการคืนค่าใดๆจาก setTemperature
+
+            HowDustLevel
+                จะไม่มีการรับค่า(input)ใดๆจาก HowDustLevel
+                จะไม่มีการคืนค่าใดๆจาก HowDustLevel (แต่พิมพ์ข้อมูลเกี่ยวกับคุณภาพอากาศขึ้นมาตามค่า dustLevel)
+
+            sensorLight
+                จะไม่มีการรับค่า(input)ใดๆจาก sensorLight
+                จะไม่มีการคืนค่า boolean (true ถ้าไฟสว่าง , false ถ้าไฟดับ)
+
+            display
+                จะไม่มีการรับค่า(input)ใดๆจาก HowDustLevel
+                จะไม่มีการคืนค่าใดๆจาก display (แต่พิมพ์ข้อมูลเกี่ยวกับเครื่องฟอกอากาศ : model, serialNo , power, ความเร็วพัดลม, อุณหภูมิ, dustLevel, และคุณภาพอากาศ)
+
+            set
+                จะมีการรับค่า(inputs)ตัวแปร : speed , Tem เพื่อเพื่อแสดงความเร็วและอุณหภูมิที่ต้องการ
+                จะไม่มีการคืนค่าใดๆจาก set
+
+            getModelCount
+                จะไม่มีการรับค่า(input) เนื่องจากไม่ต้องการข้อมูลเฉพาะตัว (instance-specific) เป็น class method
+                จะมีการคืนค่าเป็นจำนวนเต็มแทนจำนวนของ object ของคลาส AirPurifier
+
+            operator
+                จะไม่มีการรับค่า(input) (แต่มีการสร้างอ็อบเจกต์ใหม่ของ AirPurifier ภายในเมทอด)
+                จะไม่มีการคืนค่าใดๆ (แต่มีการกระทำกับผู้ใช้ผ่านทางคอนโซล , เปิดหรือปิดเครื่องฟอกอากาศ , display , และบางครั้งอาจกำหนดความเร็วพัดลมและอุณหภูมิ)
+
+            main
+                จะมีการรับค่า(input) รับArrayของString (args) เป็นพารามิเตอร์เข้า
+                จะไม่มีการคืนค่าใดๆจาก main
+
+//--------------------------------------------------
